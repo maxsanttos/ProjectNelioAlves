@@ -1,10 +1,7 @@
 package com.course.project.model.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 import java.io.Serial;
@@ -14,10 +11,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "orders")
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 public class Order implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -27,6 +21,14 @@ public class Order implements Serializable {
     private Long id;
     private Instant moment;
     private Integer orderStatus;
+
+    public Order() {}
+
+    public Order(Long id, Instant moment, Integer orderStatus) {
+        this.id = id;
+        this.moment = moment;
+        this.orderStatus = orderStatus;
+    }
 
     @Override
     public boolean equals(Object o) {
