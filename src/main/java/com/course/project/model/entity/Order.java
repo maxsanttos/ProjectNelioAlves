@@ -2,8 +2,6 @@ package com.course.project.model.entity;
 
 import com.course.project.model.entity.enums.OrderStatus;
 import jakarta.persistence.*;
-import lombok.*;
-import lombok.experimental.Accessors;
 
 import java.io.Serial;
 import java.io.Serializable;
