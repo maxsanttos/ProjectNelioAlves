@@ -1,5 +1,6 @@
 package com.course.project.model.entity;
 
+import com.course.project.model.entity.enums.OrderStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.Accessors;
@@ -11,7 +12,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "orders")
-@Data
 public class Order implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -22,12 +22,50 @@ public class Order implements Serializable {
     private Instant moment;
     private Integer orderStatus;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User client;
+
     public Order() {}
 
-    public Order(Long id, Instant moment, Integer orderStatus) {
+    public Order(Long id, Instant moment, OrderStatus orderStatus,User client) {
         this.id = id;
         this.moment = moment;
-        this.orderStatus = orderStatus;
+        setOrderStatus(orderStatus);
+        this.client = client;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Instant getMoment() {
+        return moment;
+    }
+
+    public void setMoment(Instant moment) {
+        this.moment = moment;
+    }
+
+    public User getClient() {
+        return client;
+    }
+
+    public void setClient(User client) {
+        this.client = client;
+    }
+
+    public OrderStatus getOrderStatus() {
+        return OrderStatus.valueOf(orderStatus);
+    }
+    public void setOrderStatus(OrderStatus orderStatus) {
+        if (orderStatus != null) {
+            this.orderStatus = orderStatus.getCode();
+        }
     }
 
     @Override
