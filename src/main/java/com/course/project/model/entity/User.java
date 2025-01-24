@@ -2,7 +2,7 @@ package com.course.project.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.*;
+
 
 import java.io.Serial;
 import java.io.Serializable;
