@@ -2,8 +2,7 @@ package com.course.project.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 
 import java.io.Serial;
@@ -14,8 +13,8 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "users")
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
 public class User  implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -34,45 +33,11 @@ public class User  implements Serializable {
 
     public User() {}
 
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
+    public User(Long id, String name, String email, String phone, String password) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
         this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
         this.password = password;
     }
 
