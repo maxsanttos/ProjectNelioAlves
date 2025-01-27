@@ -3,6 +3,9 @@ package com.course.project.model.entity;
 import com.course.project.model.entity.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -13,6 +16,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "orders")
+@Getter
+@Setter
 public class Order implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -32,36 +37,15 @@ public class Order implements Serializable {
     @OneToMany(mappedBy = "id.order")
     private Set<OrderItem> orderItems= new HashSet<>();
 
+    @OneToOne(mappedBy = "order",cascade = CascadeType.ALL)
+    private Payment payment;
+
     public Order() {}
 
     public Order(Long id, Instant moment, OrderStatus orderStatus,User client) {
         this.id = id;
         this.moment = moment;
         setOrderStatus(orderStatus);
-        this.client = client;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Instant getMoment() {
-        return moment;
-    }
-
-    public void setMoment(Instant moment) {
-        this.moment = moment;
-    }
-
-    public User getClient() {
-        return client;
-    }
-
-    public void setClient(User client) {
         this.client = client;
     }
 
@@ -72,10 +56,6 @@ public class Order implements Serializable {
         if (orderStatus != null) {
             this.orderStatus = orderStatus.getCode();
         }
-    }
-
-    public Set<OrderItem> getOrderItems() {
-        return orderItems;
     }
 
     @Override
