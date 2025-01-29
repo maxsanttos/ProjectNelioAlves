@@ -3,9 +3,7 @@ package com.course.project.model.entity;
 import com.course.project.model.entity.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -18,6 +16,8 @@ import java.util.Set;
 @Table(name = "orders")
 @Getter
 @Setter
+@NoArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Order implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -40,8 +40,6 @@ public class Order implements Serializable {
     @OneToOne(mappedBy = "order",cascade = CascadeType.ALL)
     private Payment payment;
 
-    public Order() {}
-
     public Order(Long id, Instant moment, OrderStatus orderStatus,User client) {
         this.id = id;
         this.moment = moment;
@@ -56,17 +54,5 @@ public class Order implements Serializable {
         if (orderStatus != null) {
             this.orderStatus = orderStatus.getCode();
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Order order = (Order) o;
-        return Objects.equals(id, order.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
     }
 }

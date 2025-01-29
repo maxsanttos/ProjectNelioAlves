@@ -17,8 +17,7 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id") // Substitui equals() e hashCode()
-@ToString(exclude = "orders") // Evita loop infinito ao imprimir a entidade
+@EqualsAndHashCode(of = "id")
 public class User  implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -29,8 +28,6 @@ public class User  implements Serializable {
     private String name;
     private String email;
     private String phone;
-
-    @JsonIgnore
     private String password;
 
     @JsonIgnore
@@ -44,5 +41,4 @@ public class User  implements Serializable {
         this.phone = phone;
         this.password = password;
     }
-
 }
