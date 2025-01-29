@@ -15,6 +15,10 @@ import java.util.Objects;
 @Table(name = "users")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id") // Substitui equals() e hashCode()
+@ToString(exclude = "orders") // Evita loop infinito ao imprimir a entidade
 public class User  implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -25,33 +29,12 @@ public class User  implements Serializable {
     private String name;
     private String email;
     private String phone;
+
+    @JsonIgnore
     private String password;
 
     @JsonIgnore
     @OneToMany(mappedBy = "client")
     private List<Order> orders = new ArrayList<>();
 
-    public User() {}
-
-    public User(Long id, String name, String email, String phone, String password) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.password = password;
-    }
-
-    public List<Order> getOrders() { return orders; }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
 }
