@@ -6,6 +6,7 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,7 +30,9 @@ public class Payment implements Serializable{
     @Column(nullable = false)
     private Instant moment;
 
+    @JsonIgnore
     @OneToOne
     @MapsId
     private Order order;
+
 }

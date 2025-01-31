@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -19,12 +21,15 @@ public class OrderItem implements Serializable {
     @EmbeddedId
     private OrdemItemPK id = new OrdemItemPK();
 
+    @Getter
+    @Setter
     private Integer quantity;
+
+    @Getter
+    @Setter
     private Double price;
 
-    public OrderItem() {
-    }
-
+    public OrderItem() {}
     public OrderItem(Order order,Product product, Integer quantity, Double price) {
         super();
         id.setOrder(order);
@@ -47,22 +52,6 @@ public class OrderItem implements Serializable {
 
     public void setProduct(Product product){
         id.setProduct(product);
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
     }
 
     @Override

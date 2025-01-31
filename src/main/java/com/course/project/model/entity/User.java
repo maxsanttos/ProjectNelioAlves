@@ -15,8 +15,6 @@ import java.util.Objects;
 @Table(name = "users")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class User  implements Serializable {
     @Serial
@@ -34,7 +32,9 @@ public class User  implements Serializable {
     @OneToMany(mappedBy = "client")
     private List<Order> orders = new ArrayList<>();
 
+    public User(){}
     public User(Long id, String name, String email, String phone, String password) {
+        super();
         this.id = id;
         this.name = name;
         this.email = email;
