@@ -1,12 +1,11 @@
 package com.course.project.model.entity;
 
-import com.course.project.model.entity.pk.OrdemItemPK;
+import com.course.project.model.entity.pk.OrderItemPK;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -19,19 +18,17 @@ public class OrderItem implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId
-    private OrdemItemPK id = new OrdemItemPK();
+    private OrderItemPK id = new OrderItemPK();
 
-    @Getter
-    @Setter
+
     private Integer quantity;
 
-    @Getter
-    @Setter
+
     private Double price;
 
     public OrderItem() {}
-    public OrderItem(Order order,Product product, Integer quantity, Double price) {
-        super();
+
+    public OrderItem(Order order, Product product, Integer quantity, Double price) {
         id.setOrder(order);
         id.setProduct(product);
         this.quantity = quantity;
@@ -49,9 +46,24 @@ public class OrderItem implements Serializable {
     public Product getProduct(){
         return id.getProduct();
     }
-
     public void setProduct(Product product){
         id.setProduct(product);
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     @Override
