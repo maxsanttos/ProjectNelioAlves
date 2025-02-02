@@ -25,4 +25,11 @@ public class UserService {
     public User save(User user) {
         return repository.save(user);
     }
+
+    public void deleteById(Long id) {
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("Usuário não encontrado!");
+        }
+        repository.deleteById(id);
+    }
 }

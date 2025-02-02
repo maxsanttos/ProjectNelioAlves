@@ -37,4 +37,11 @@ public class UserController {
                 .buildAndExpand(result.getId()).toUri();
         return ResponseEntity.created(uri).body(result);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+        service.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
