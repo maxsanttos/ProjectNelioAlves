@@ -86,6 +86,14 @@ public class Order implements Serializable {
         return items;
     }
 
+    public Double getTotal() {
+        double total = 0;
+        for (OrderItem item : items) {
+            total += item.getPrice();
+        }
+        return total;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
