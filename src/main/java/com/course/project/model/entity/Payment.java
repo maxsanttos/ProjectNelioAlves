@@ -3,7 +3,6 @@ package com.course.project.model.entity;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.Date;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
